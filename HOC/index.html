@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+<body>
+    <div id="root"> </div>
+    <script type="text/babel">
+        class Student extends React.Component{
+            static sayHello(){
+                console.log(this)
+            }
+            constructor(props){
+                super(props);
+            }
+            inputElement=React.createRef();
+            componentWillMount(){
+                this.setState({
+                    name:this.props.name,
+                    age:this.props.age
+                })
+            }
+            componentDidMount(){
+                this.props.inputRef(this.inputElement.current)
+            }
+            focus=(e)=>{
+                console.log(this.inputElement);
+                this.inputElement.current.focus();
+            }
+            render(){
+                return (
+                    <div>
+                        <p>{ this.state.name}</p>
+                    <input value={ this.state.age } onChange={ (e)=>{} } ref={ this.inputElement } />
+                    <input type="button" onClick={this.focus} />    
+                    </div>
+                );
+            }
+        }    
+const EnhanceWrapper=(WrappedComponent)=>(props)=>{
+    let inputElement=null;
+    const handleClick=(el)=>{
+        // inputElement=props.inputRef()
+        // inputElement.focus();
+        inputElement.focus()    
+    };
+    return(
+        <div>
+        <WrappedComponent {...props}  inputRef={ (el)=>{inputElement=el} } />
+        <input type="button" value="focus 子组件 input" onClick={ handleClick } />
+    </div>
+    )
+};
+    const WrapperComponent=EnhanceWrapper(Student);
+        ReactDOM.render(<WrapperComponent name="小名" age="18"  />,document.getElementById('root'));
+    </script>
+</body>
+</html>

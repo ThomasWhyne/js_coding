@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>promise</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const dsa=async ()=>{
+			let result=await new Promise((resolve,reject)=>{
+			setTimeout(function(){
+				console.log('aaa');
+				resolve('correct');
+			},1000)
+		});
+		console.log(result);
+		console.log('bbb');
+		}
+		dsa();
+
+	</script>
+</body>
+</html>

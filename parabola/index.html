@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绘制抛物线运动</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .ball{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: aqua;
+        position: absolute;
+    }
+    </style>
+</head>
+<body>
+    <script>
+        //抛物线开始及结束坐标
+        let 
+            Xstart=0,
+            Ystart=0,
+            Xend=1000,
+            Yend=1000;
+        let Time=520;//运行时间
+        let Xspeed=(Xend-Xstart)/Time;
+        let Yspeed=(Yend-Ystart)/Time;//抛物线端点运动速度
+        let Acceleration=2*(Yend-Ystart)/(Time**2);//核心算法：抛物线加速度
+    let ball=document.createElement('div');
+    ball.className='ball';
+    document.body.appendChild(ball);
+    ball.style.top=Ystart + 'px';
+    ball.style.left=Xstart + 'px';
+    let nowX=Xstart;//当前x值
+    let nowY=Ystart;//当前y值
+    let loop=0;
+    let move=()=>{
+        requestAnimationFrame(() => {
+            if(nowY>=Yend){
+                ball.parentNode.removeChild(ball);
+            }
+            loop++;
+            nowX+=Xspeed;
+            nowY+=Yspeed;
+            ball.style.top=nowY+'px';
+            ball.style.left=nowX+'px';
+            
+            //console.log(loop);
+            move();
+        });
+    }
+    //move();
+    </script>
+</body>
+</html>

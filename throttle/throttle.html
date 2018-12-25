@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            background: #666666;
+            line-height: 500px;
+            color: #ffffff;
+            font-size:100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">0</div>
+    <script>
+        const container=document.getElementById("container");
+        function getUserAction(){
+            var num=Number(this.innerHTML);
+            this.innerHTML=++num;
+        }
+        // function throttle(func,wait){
+        //     var context,args;
+        //     var previous=0;
+        //     return function(){
+        //         var now =+new Date();
+        //         context=this;
+        //         var args = arguments;
+        //         if(now-previous>wait){
+        //             func.apply(this, args);
+        //             previous=now;
+        //         }
+        //     }
+        // }
+        function throttle(func,wait){
+            var timmer,context,args,previous=0;
+            return function(){
+                context=this;
+                args=arguments;
+                if(!timmer){
+                    timmer=setTimeout(function(){
+                        func.apply(context, args)
+                        timmer=null;
+                    },wait)
+                }
+            }
+
+        }
+        container.onmousemove=throttle(getUserAction,2000);
+    </script>
+</body>
+</html>

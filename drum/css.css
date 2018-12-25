@@ -1,0 +1,48 @@
+html{
+    font-size: 10px;
+    /*background: url(./images/TIM图片20180918205318.jpg) bottom center;*/
+    background-size: cover;
+    background-color: aquamarine;
+}
+body,html{
+    margin: 0;
+    padding:0;
+    font-family: sans-serif;
+}
+.keys{
+    min-height: 100vh;/*相对单位，等分单位，用于设备适配，100vh为设备屏幕整高，wh为整宽*/
+    /*弹性布局*/
+    display: flex;
+    /*弹性布局特有属性*/
+    align-items:center;/*水平方向，居中*/
+    justify-items: center;/*垂直方向，居中*/
+}
+.key{
+    width: 10rem;
+    border: 0.4rem solid black;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    color: aliceblue;
+    border-radius: .5rem;
+    background: rgba(0,0,0,.4);
+    text-shadow: 0 0 .5rem black;
+    /*过渡效果*/
+    transition: all .07s ease;
+
+}
+.key>div{
+    font-size: 4rem;
+}
+.sound{
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: #ffc600;
+}
+.playing{
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>promise</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		const p=new Promise((resolve,reject)=>{
+			console.log('aaa');
+			//resolve('result');
+			reject('fail');
+		})
+		p.then(res=>{
+			console.log(res);
+		}).catch(err=>{
+			console.log(err)
+		})
+		console.log('larry');
+			</script>
+		</body>
+		</html>

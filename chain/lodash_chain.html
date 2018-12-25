@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lodash链式调用</title>
+</head>
+<body>
+
+    <!-- <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.core.min.js"></script> -->
+    <script>
+        function chainResult(instance,obj){
+            return instance._chain?_chain(obj):obj;
+        }
+        //chain方法给我们链式调用的能力
+        var _=function(obj){
+            if(!(this instanceof _))return new _(obj);
+            this._wrapped=obj;
+        }
+        _.prototype={
+            push:function(num){
+                this._wrapped.push(num);
+                return chainResult(this,this._wrapped);
+            },
+            shift:function(){
+                this._wrapped.shift();
+                return chainResult(this, this._wrapped);
+            },
+            value:function(){
+                return this._wrapped;
+            }
+        }
+        _.chain=function(obj){
+            //需要让是否链式调用的逻辑完全独立于整个类
+            var instance=_(obj);
+            instance._chain=true;
+            return instance;
+        }
+
+    const arr= _.chain([1,2,3,4])
+        .push(5)
+        .shift(1)
+        .value(); 
+    console.log(arr);
+    </script>
+</body>
+</html>

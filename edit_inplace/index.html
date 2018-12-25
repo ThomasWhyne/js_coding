@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在线编辑</title>
+</head>
+<body>
+    <div id="titleClassical">this is the text</div>
+    <script>
+    function EditInplaceField(id,parent,value){
+        this.id=id;
+        this.parentElment=parent;
+        this.value=value||'default value';
+        this.createElment();
+        this.convertToText();
+        this.attachEvent();
+    }
+    EditInplaceField.prototype.createElment=function(){
+            this.containerElment = document.createElement('div');
+            this.parentElment.appendChild(this.containerElment);
+            this.staticElement=document.createElement('span');
+            this.staticElement.innerHTML = this.value;
+            this.containerElment.appendChild(this.staticElement);
+            
+            
+            this.fieldElement=document.createElement('input');
+            this.fieldElement.type='text';
+            this.fieldElement.value=this.value;
+            this.containerElment.appendChild(this.fieldElement);
+
+            this.saveButton=document.createElement('input');
+            this.saveButton.type='button';
+            this.saveButton.value='save';
+            this.containerElment.appendChild(this.saveButton);
+
+            this.cancelButton=document.createElement('input');
+            this.cancelButton.type='button';
+            this.cancelButton.value='cancel';
+            this.containerElment.appendChild(this.cancelButton);
+
+    };
+    EditInplaceField.prototype.convertToText=function(){
+        this.fieldElement.style.display='none';
+        this.saveButton.style.display='none';
+        this.cancelButton.style.display='none';
+        this.staticElement.style.display='block';
+        this.staticElement.innerHTML=this.value;
+        
+    };
+    EditInplaceField.prototype.attachEvent=function(){
+        var that=this;
+        this.staticElement.addEventListener('click',function(){
+            that.converToEditable();
+        });
+        this.cancelButton.addEventListener('click',function(){
+            that.convertToText();
+        });
+        this.saveButton.addEventListener('click',function(){
+            let value=that.fieldElement.value;
+            that.value=value;
+        })
+    };
+    EditInplaceField.prototype.converToEditable=function(){
+        this.fieldElement.style.display = 'inline-block';
+        this.saveButton.style.display = 'inline-block';
+        this.cancelButton.style.display = 'inline-block';
+        this.staticElement.style.display = 'block';
+    }
+    var titleClassical = new EditInplaceField('titleClassical', document.body, 'TitleHere');
+    
+    </script>
+</body>
+</html>

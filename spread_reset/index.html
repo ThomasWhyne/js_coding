@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2 class="jump">SPREADS</h2>
+    <div class="people">
+        <p>Wes</p>
+        <p>Kait</p>
+        <p>Randy</p>
+    </div>
+</body>
+    <script>
+        //var jump=document.querySelector(".jump");
+        //龙鸣写法：
+        //slice+for...of
+        //贵族写法
+        //jump.innerHTML=Array.prototype.map.call(jump.innerHTML,item=>`<span>${item}</span>`).join('');
+        //马克思主义者写法：
+        //jump.innerHTML=[...jump.innerHTML].map(item =>`<span>${item}</span>`).join('');
+        
+        //龙鸣写法：
+        //var people=Array.prototype.map.call(document.querySelectorAll('.people p'),item=>item.innerHTML); 
+        //贵族写法：
+        //var people = Array.from(document.querySelectorAll('.people p')).map(item => item.innerHTML);
+        //console.log(people);
+
+        const deepDish={
+            pizzaName:'Deep Dish',
+            size:'Medium',
+            ingredients:['Marinara','Italian Sausage','Dough','Cheese']
+        };
+        //const shoppingList = ['Milk', 'Flour'];
+        //龙鸣写法：
+        //shoppingList=shoppingList.concat(deepDish.ingredients);const 情况下无法使用
+        //贵族写法：
+        const shoppingList=['Milk','Flour',...deepDish.ingredients];
+
+        const team=['Sun DahHyeong',"Jian ZiHao","Liu ShiYu","Yan JunZe","Li YuanHao","Shi SenMing"];
+        //龙鸣写法：
+        //const list=team.filter(x=>x== 'Sun DahHyong'||x== "Shi SenMing");
+        //贵族写法：
+        const [coach,vCoach,...players]=team;
+        
+        
+    </script>
+</html>     

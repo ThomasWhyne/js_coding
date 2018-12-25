@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>postsPromise</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		const postsPromise=fetch("https://github.com/ThomasWhyne")
+			.then(res=>{
+				res.data.json()
+			})
+			.then(res=>{
+				console.log(res.data)
+			})
+			.catch(err=>{
+				console.log(err)
+			})
+
+	</script>
+</body>
+</html> 
